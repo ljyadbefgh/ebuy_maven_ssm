@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
     <!-- spring mvc 配置 -->
     <servlet>
         <servlet-name>spring</servlet-name>
@@ -13,6 +14,9 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+
+
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern>

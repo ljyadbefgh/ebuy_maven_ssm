@@ -21,7 +21,7 @@ public class AdminDaoTest {
 		SqlSession session = sessionFactory.openSession();
 		try {
 			//获取mapper接口代理对象
-			AdminDao adminDao = session.getMapper(AdminDao.class);
+			adminDao = session.getMapper(AdminDao.class);
 			System.out.println(adminDao.login("admin", SHA.getResult("123")));
 			System.out.println(adminDao.login("user",  SHA.getResult("123456")));
 			System.out.println(adminDao.login("user",  SHA.getResult("111")));
@@ -42,9 +42,11 @@ public class AdminDaoTest {
 		SqlSession session = sessionFactory.openSession();
 		try {
 			//获取mapper接口代理对象
-			AdminDao adminDao = session.getMapper(AdminDao.class);
+			adminDao = session.getMapper(AdminDao.class);
 			System.out.println(adminDao.updatePassword( SHA.getResult("111111"), 1000));
 			System.out.println(adminDao.updatePassword( SHA.getResult("111111"), 2));
+			//提交事务，只有提交后更改才会真正的执行
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			//回滚事务，取消此次数据库的所有更改操作
