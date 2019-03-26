@@ -1,11 +1,14 @@
 package com.lcvc.ebuy_maven_ssm.service.impl;
 
 import com.lcvc.ebuy_maven_ssm.dao.AdminDao;
+import com.lcvc.ebuy_maven_ssm.dao.SqlSessionFactoryUtil;
 import com.lcvc.ebuy_maven_ssm.model.Admin;
 import com.lcvc.ebuy_maven_ssm.util.SHA;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 public class AdminService {
-    private AdminDao adminDao=new AdminDao();
+    private AdminDao adminDao;
 
     /**
      * 根据账户名和密码去数据库查询，进行登录判断

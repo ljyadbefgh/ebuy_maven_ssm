@@ -32,6 +32,8 @@
     <aspectj.version>1.8.9</aspectj.version>
     <!--commons-fileupload包，用于文件上传，此处用于搭配kindeditor插件。配置该类后，maven会自动下载依赖的commons-io包-->
     <fileupload.version>1.3.1</fileupload.version>
+    <mybatis.version>3.4.2</mybatis.version>
+    <mybatis_spring.version>1.3.1</mybatis_spring.version>
 
 
   </properties>
@@ -171,6 +173,21 @@
     </dependency>
 
     <!--————————————————————引入Spring包（上面）————————————————————-->
+    <!--————————————————————引入mybatis包和整合包（下面）————————————————-->
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+    <!--mybatis和spring整合包-->
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis_spring.version}</version>
+    </dependency>
+    <!--————————————————————引入mybatis包和整合包（上面）————————————————-->
   </dependencies>
 
   <build>
