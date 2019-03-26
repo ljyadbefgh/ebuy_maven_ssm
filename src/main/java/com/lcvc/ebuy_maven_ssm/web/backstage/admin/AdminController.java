@@ -1,5 +1,6 @@
 package com.lcvc.ebuy_maven_ssm.web.backstage.admin;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AdminController {
-	private AdminService adminService=new AdminService();
+	@Resource
+	private AdminService adminService;
 
 	@RequestMapping(value = "/backstage/admin/toUpdatePassword", method = RequestMethod.GET)
 	public String toUpdatePassword(){

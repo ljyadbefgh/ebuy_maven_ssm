@@ -6,7 +6,9 @@ import com.lcvc.ebuy_maven_ssm.model.Admin;
 import com.lcvc.ebuy_maven_ssm.util.SHA;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdminService {
     private AdminDao adminDao;
 
