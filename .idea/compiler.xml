@@ -9,8 +9,8 @@
         <module name="ebuy_maven_ssm" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ebuy_maven_ssm" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="ebuy_maven_ssm" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

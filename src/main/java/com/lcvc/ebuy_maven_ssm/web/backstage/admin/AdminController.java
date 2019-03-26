@@ -5,13 +5,14 @@ import javax.servlet.http.HttpSession;
 
 import com.lcvc.ebuy_maven_ssm.dao.AdminDao;
 import com.lcvc.ebuy_maven_ssm.model.Admin;
+import com.lcvc.ebuy_maven_ssm.service.impl.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AdminController {
-	private AdminDao adminDao=new AdminDao();
+	private AdminService adminService=new AdminService();
 
 	@RequestMapping(value = "/backstage/admin/toUpdatePassword", method = RequestMethod.GET)
 	public String toUpdatePassword(){
@@ -22,10 +23,10 @@ public class AdminController {
 	public String doUpdatePassword(String oldPass,String newPass,String confirmPass,HttpSession session
 			,HttpServletRequest request){
 		Admin admin=(Admin)session.getAttribute("admin");
-		if(adminDao.login(admin.getUsername(), oldPass)!=null){//如果原密码正确
+		if(adminService.login(admin.getUsername(), oldPass)!=null){//如果原密码正确
 			if(newPass.equals(confirmPass)){//如果新密码和确认密码相同
 				//保存新密码
-				adminDao.updatePassword(newPass, admin.getId());
+				adminService.updatePassword(newPass, admin.getId());
 			}else{//如果不相同
 				request.setAttribute("myMessage", "密码修改失败：新密码和确认密码不一致");
 			}

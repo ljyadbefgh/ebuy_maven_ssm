@@ -16,8 +16,6 @@ public class AdminDao {
 	 */
 	public Admin login(String username, String password){
 		Admin admin=null;//最后返回的对象
-		//将密码加密后再进行比对
-		password= SHA.getResult(password);
 		Connection conn=DBHelper.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -43,15 +41,14 @@ public class AdminDao {
 		return admin;
 	}
 
-	/*
-	 * 张三丰
-	 * 20180330
-	 * 将新密码保存到数据库中
-	 * @return true表示密码更改成功，false表示密码更改失败
+	/**
+	 * 更改指定账户的密码
+	 * @param newPass 更改后的密码
+	 * @param id 要更改密码的账户主键
+	 * @return 更改了多少条记录
 	 */
-	public boolean updatePassword(String newPass,Integer id){
-		Boolean status=false;//默认编辑失败
-		newPass= SHA.getResult(newPass);
+	public int updatePassword(String newPass,Integer id){
+		int i=0;
 		Connection conn=DBHelper.getConnection();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -60,17 +57,13 @@ public class AdminDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, newPass);
 			pstmt.setInt(2, id);
-			int i=pstmt.executeUpdate();//更改了多少条记录
-			//编写代码，判断是否编辑成功
-			if(i>0){
-				status=true;
-			}
+			i=pstmt.executeUpdate();//更改了多少条记录
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			DBHelper.closeConn(conn,pstmt,rs);
 		}
-		return status;
+		return i;
 	}
 	
 	
