@@ -1,8 +1,6 @@
 package com.lcvc.ebuy_maven_ssm.service;
 
-import com.lcvc.ebuy_maven_ssm.dao.AdminDao;
 import com.lcvc.ebuy_maven_ssm.service.impl.AdminService;
-import com.lcvc.ebuy_maven_ssm.util.SHA;
 import org.junit.Test;
 
 public class AdminServiceTest {

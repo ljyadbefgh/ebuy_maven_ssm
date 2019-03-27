@@ -1,7 +1,10 @@
 package com.lcvc.ebuy_maven_ssm.model;
 
+import org.apache.ibatis.type.Alias;
+
 import java.util.Date;
 
+//@Alias("Admin")
 public class Admin {
 	private Integer id;
 	private String username;//账户名

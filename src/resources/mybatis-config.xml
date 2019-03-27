@@ -3,30 +3,17 @@
 <configuration>
     <!-- 实体类,简称 -设置别名 -->
 	<typeAliases>
-		<typeAlias alias="Admin" type="com.lcvc.ebuy_maven_ssm.model.Admin" />
+		<package name="com.lcvc.ebuy_maven_ssm.model"/>
+		<!--<typeAlias alias="Admin" type="com.lcvc.ebuy_maven_ssm.model.Admin" />-->
+		<!--
+      通过package, 可以直接指定package的名字， mybatis会自动扫描你指定包下面的javabean,
+      并且默认设置一个别名，默认的名字为： javabean 的首字母小写的非限定类名来作为它的别名。
+      也可在javabean 加上注解@Alias 来自定义别名， 例如： @Alias(user)
+      <package name="com.lcvc.ebuy_maven_ssm.model"/>
+       -->
 	</typeAliases>
-	<!-- 数据库连接 -->
-    <environments default="development">
-        <environment id="development">
-            <transactionManager type="JDBC" />
-            <!-- 配置数据库连接信息 -->
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/ebuy_maven_ssm?characterEncoding=utf-8" />
-                <property name="username" value="user" />
-                <property name="password" value="123456" />
-            </dataSource>
-        </environment>
-    </environments>
     
-    
-    
-     <mappers>
-         <!-- 注册userMapper.xml文件， 
-         userMapper.xml位于me.gacl.mapping这个包下，所以resource写成me/gacl/mapping/userMapper.xml-->
-         <mapper resource="mapper/AdminMapper.xml"/>
-     </mappers>
-     
+
       <!-- 注意：此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。 -->
     <!-- <package name="com.baoyuan.mapper.dao"/> -->
     
