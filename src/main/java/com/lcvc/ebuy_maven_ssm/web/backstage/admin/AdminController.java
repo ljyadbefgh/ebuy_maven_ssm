@@ -26,7 +26,9 @@ public class AdminController {
 			,HttpServletRequest request){
 		Admin admin=(Admin)session.getAttribute("admin");
 		if(adminService.login(admin.getUsername(), oldPass)!=null){//如果原密码正确
-			if(newPass.equals(confirmPass)){//如果新密码和确认密码相同
+			if(newPass.equals("")){//如果新密码和确认密码相同
+				request.setAttribute("myMessage", "密码修改失败：新密码不能为空");
+			}else if(newPass.equals(confirmPass)){//如果新密码和确认密码相同
 				//保存新密码
 				adminService.updatePassword(newPass, admin.getId());
 			}else{//如果不相同

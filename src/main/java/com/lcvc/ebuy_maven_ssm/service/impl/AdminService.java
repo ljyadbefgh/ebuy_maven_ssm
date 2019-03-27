@@ -8,8 +8,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 @Service
 public class AdminService {
+    @Resource
     private AdminDao adminDao;
 
     /**
@@ -19,25 +22,9 @@ public class AdminService {
      * @return true表示登录成功,false表示登录失败
      */
     public Admin login(String username, String password){
-        Admin admin=null;
         //将密码加密后再进行比对
         password= SHA.getResult(password);
-        //打开数据库，耗费资源巨大，建议项目中只打开一次
-        SqlSessionFactory sessionFactory = SqlSessionFactoryUtil.getSqlSessionFactory();
-        //创建SqlSession，SqlSession类似于JDBC中的Connection，
-        SqlSession session = sessionFactory.openSession();
-        try {
-            //获取mapper接口代理对象
-            adminDao = session.getMapper(AdminDao.class);
-            admin=adminDao.login(username, password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return admin;
+        return adminDao.login(username, password);
     }
 
     /**
@@ -49,27 +36,9 @@ public class AdminService {
     public boolean updatePassword(String newPass,Integer id){
         boolean status=false;//默认编辑失败
         newPass= SHA.getResult(newPass);//将新密码加密
-        //打开数据库，耗费资源巨大，建议项目中只打开一次
-        SqlSessionFactory sessionFactory = SqlSessionFactoryUtil.getSqlSessionFactory();
-        //创建SqlSession，SqlSession类似于JDBC中的Connection，
-        SqlSession session = sessionFactory.openSession();
-        try {
-            //获取mapper接口代理对象
-            adminDao = session.getMapper(AdminDao.class);
-            int i=adminDao.updatePassword(newPass, id);
-            if(i>0){//如果密码数量>0
-                status=true;
-                //提交事务，只有提交后更改才会真正的执行
-                session.commit();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            //回滚事务，取消此次数据库的所有更改操作
-            session.rollback();
-        } finally {
-            if (session != null) {
-                session.close();
-            }
+        int i=adminDao.updatePassword(newPass, id);
+        if(i>0){//如果密码数量>0
+            status=true;
         }
         return status;
     }
