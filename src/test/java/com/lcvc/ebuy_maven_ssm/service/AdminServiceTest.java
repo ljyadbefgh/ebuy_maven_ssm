@@ -1,10 +1,13 @@
 package com.lcvc.ebuy_maven_ssm.service;
 
-import com.lcvc.ebuy_maven_ssm.service.impl.AdminService;
+import com.lcvc.ebuy_maven_ssm.SpringJunitTest;
 import org.junit.Test;
 
-public class AdminServiceTest {
-	private AdminService adminService=new AdminService();
+import javax.annotation.Resource;
+
+public class AdminServiceTest  extends SpringJunitTest {
+	@Resource
+	private AdminService adminService;
 
 	@Test
 	public void testLogin(){

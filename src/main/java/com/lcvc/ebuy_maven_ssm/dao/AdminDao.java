@@ -2,7 +2,10 @@ package com.lcvc.ebuy_maven_ssm.dao;
 
 import com.lcvc.ebuy_maven_ssm.model.Admin;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
+//这里不使用@Service也不会有问题，但是idea中会报错（工具问题），有强迫症的话可以加上@Service，这样idea可以查找
+@Service
 public interface AdminDao {
 
 	/**
